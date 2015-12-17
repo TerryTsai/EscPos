@@ -1,12 +1,27 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
-sourceCompatibility = 1.5
+mainClassName = 'email.com.gmail.ttsai0509.escpos.EscPos"'
+sourceCompatibility = 1.8
 version = '1.0'
+
+// Package jar with dependencies
+task fatJar(type: Jar) {
+    manifest {
+        Attributes 'Main-Class': 'email.com.gmail.ttsai0509.escpos.EscPos'
+    }
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with Jar
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile files('libs/rxtx-2.2/RXTXcomm.jar')
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.slf4j:slf4j-api:1.7.13'
+    compile 'org.slf4j:slf4j-simple:1.7.13'
 }
