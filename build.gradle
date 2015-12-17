@@ -1,18 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'email.com.gmail.ttsai0509.escpos.EscPos"'
+mainClassName = 'email.com.gmail.ttsai0509.escpos.EscPos'
 sourceCompatibility = 1.8
-version = '1.0'
+version = '0.1'
 
 // Package jar with dependencies
 task fatJar(type: Jar) {
     manifest {
-        Attributes 'Main-Class': 'email.com.gmail.ttsai0509.escpos.EscPos'
+        attributes 'Main-Class': 'email.com.gmail.ttsai0509.escpos.EscPos'
     }
     baseName = project.name
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with Jar
+    with jar
 }
 
 repositories {
