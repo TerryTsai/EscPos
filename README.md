@@ -1,18 +1,30 @@
 # EscPos
 EscPos Library for Java
 
-Sample Usage :
+Basic Usage :
 ```java
-  SerialPort printer = ESCPos.connectSerialPort("COM1");
-  OutputStream out = printer.getOutputStream();
+SerialPort port = null;
+OutputStream out = null;
+EscPosBuilder escPos = new EscPosBuilder(42);
 
-  ESCPos.Commander.command(out)
-                  .print(ESCPos.Command.INITIALIZE)
-                  .print(ESCPos.Command.ALIGN_CENTER)
-                  .print("Hello World")
-                  .print(ESCPos.Command.FEED_N)
-                  .print(10)
-                  .print(ESCPos.Command.FULL_CUT);
-  out.close();
-  printer.close();
+try {
+    port = ComUtils.connectSerialPort("COM18", 2000, SerialConfig.CONFIG_8N1(Baud.BAUD_19200));
+    out = port.getOutputStream();
+    out.write(escPos.initialize()
+                    .text("HELLO WORLD")
+                    .feed(5)
+                    .cut(Cut.PART)
+                    .getBytes()
+    );
+
+} catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | IOException e) {
+    e.printStackTrace();
+
+} finally {
+    { // @formatter:off
+    try {   out.close(); } catch (Exception e) {}
+    try {  port.close(); } catch (Exception e) {}
+    try {escPos.close(); } catch (Exception e) {}
+    } // @formatter:on
+}
 ```

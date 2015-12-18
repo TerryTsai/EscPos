@@ -1,14 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'email.com.gmail.ttsai0509.escpos.EscPos'
+mainClassName = 'email.com.gmail.ttsai0509.escpos.EscPosBuilder'
 sourceCompatibility = 1.8
 version = '0.1'
 
 // Package jar with dependencies
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'email.com.gmail.ttsai0509.escpos.EscPos'
+        attributes 'Main-Class': 'email.com.gmail.ttsai0509.escpos.EscPosBuilder'
     }
     baseName = project.name
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
@@ -22,6 +22,7 @@ repositories {
 dependencies {
     compile files('libs/rxtx-2.2/RXTXcomm.jar')
     compile 'commons-io:commons-io:2.4'
+    compile 'commons-codec:commons-codec:1.10'
     compile 'org.slf4j:slf4j-api:1.7.13'
     compile 'org.slf4j:slf4j-simple:1.7.13'
 }
