@@ -12,7 +12,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class EscPosBuilder {
 
@@ -20,25 +19,24 @@ public class EscPosBuilder {
     public static void main(String[] args) {
 
         SerialPort port = null;
-        OutputStream out = null;
         EscPosBuilder escPos = new EscPosBuilder();
 
         try {
+
+            byte[] data = escPos.initialize()
+                    .text("HELLO WORLD")
+                    .feed(5)
+                    .cut(Cut.PART)
+                    .getBytes();
+
             port = ComUtils.connectSerialPort("COM18", 2000, SerialConfig.CONFIG_8N1(Baud.BAUD_19200));
-            out = port.getOutputStream();
-            out.write(escPos.initialize()
-                            .text("HELLO WORLD")
-                            .feed(5)
-                            .cut(Cut.PART)
-                            .getBytes()
-            );
+            port.getOutputStream().write(data);
 
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | IOException e) {
             e.printStackTrace();
 
         } finally {
             { // @formatter:off
-            try {   out.close(); } catch (Exception e) {}
             try {  port.close(); } catch (Exception e) {}
             try {escPos.close(); } catch (Exception e) {}
             } // @formatter:on
