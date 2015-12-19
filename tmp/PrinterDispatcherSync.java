@@ -1,9 +1,9 @@
 package email.com.gmail.ttsai0509.dispatcher;
 
-import email.com.gmail.ttsai0509.escpos.dispatcher.exception.PrinterDispatcherException;
-import email.com.gmail.ttsai0509.escpos.printer.PrintJob;
-import email.com.gmail.ttsai0509.escpos.printer.Printer;
-import email.com.gmail.ttsai0509.escpos.printer.exception.PrinterException;
+import email.com.gmail.ttsai0509.print.dispatcher.exception.PrinterDispatcherException;
+import email.com.gmail.ttsai0509.print.printer.PrintJob;
+import email.com.gmail.ttsai0509.print.printer.Printer;
+import email.com.gmail.ttsai0509.print.printer.exception.PrinterException;
 
 public class PrinterDispatcherSync implements PrinterDispatcher {
 
