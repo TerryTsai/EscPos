@@ -73,4 +73,4 @@ Cuts the paper:
 
 ComUtils
 =======
-ComUtils is a WIP utilty class for connecting to serial printers in a more type-safe manner.
+ComUtils is a WIP utilty class for connecting to serial printers in a more type-safe manner. **rxtxSerial.dll** is required.
