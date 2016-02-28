@@ -5,7 +5,7 @@ A simple, minimal ESC/Pos implmentation for receipt printers in Java.
 Basic Usage
 ===========
 ```java
-    // Requires EscPos-0.1.jar
+    // Requires EscPos-1.0.jar
     EscPosBuilder escPos = new EscPosBuilder();
     byte[] data = escPos.initialize()
             .font(Font.EMPHASIZED)
@@ -17,7 +17,7 @@ Basic Usage
 ```
 Although still a WIP, there is a utility class for serial port printers.
 ```java
-    // Requires EscPos-0.1.jar & rxtxSerial.dll
+    // Requires EscPos-1.0.jar & rxtxSerial.dll
     int timeout = 2000;
     SerialConfig config = SerialConfig.CONFIG_8N1(Baud.BAUD_19200);
     SerialPort port = ComUtils.connectSerialPort("COM18", timeout, config);
