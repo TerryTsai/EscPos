@@ -1,10 +1,11 @@
 EscPos Library for Java
 =======================
-A simple, minimal ESC/Pos implmentation for receipt printers in Java.
+A simple, minimal ESC/Pos implmentation for receipt printers in Java. 
 
 Basic Usage
 ===========
 ```java
+    // Requires EscPos-0.1.jar
     EscPosBuilder escPos = new EscPosBuilder();
     byte[] data = escPos.initialize()
             .font(Font.EMPHASIZED)
@@ -16,6 +17,7 @@ Basic Usage
 ```
 Although still a WIP, there is a utility class for serial port printers.
 ```java
+    // Requires EscPos-0.1.jar & rxtxSerial.dll
     int timeout = 2000;
     SerialConfig config = SerialConfig.CONFIG_8N1(Baud.BAUD_19200);
     SerialPort port = ComUtils.connectSerialPort("COM18", timeout, config);
@@ -73,4 +75,4 @@ Cuts the paper:
 
 ComUtils
 =======
-ComUtils is a WIP utilty class for connecting to serial printers in a more type-safe manner. **rxtxSerial.dll** is required.
+ComUtils is a WIP utilty class for connecting to serial printers in a more type-safe manner. Requires **rxtxSerial.dll**.
