@@ -1,4 +1,3 @@
-# EscPos
 EscPos Library for Java
 =======================
 A simple, minimal ESC/Pos implmentation for receipt printers in Java.
