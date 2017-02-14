@@ -1,14 +1,10 @@
 package email.com.gmail.ttsai0509.escpos;
 
 
-import email.com.gmail.ttsai0509.escpos.com.ComUtils;
-import email.com.gmail.ttsai0509.escpos.com.serial.Baud;
-import email.com.gmail.ttsai0509.escpos.com.serial.SerialConfig;
-import gnu.io.NoSuchPortException;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
-import gnu.io.UnsupportedCommOperationException;
-import org.apache.commons.io.IOUtils;
+import com.fazecast.jSerialComm.SerialPort;
+import email.com.gmail.ttsai0509.common.IOUtils;
+import email.com.gmail.ttsai0509.serial.SerialFactory;
+import email.com.gmail.ttsai0509.serial.config.SerialConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,16 +25,19 @@ public class EscPosBuilder {
                     .cut(Cut.PART)
                     .getBytes();
 
-            port = ComUtils.connectSerialPort("COM18", 2000, SerialConfig.CONFIG_8N1(Baud.BAUD_19200));
-            port.getOutputStream().write(data);
+            port = SerialFactory.jSerialPort("COM8", SerialConfig.CONFIG_9600_8N1());
 
-        } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | IOException e) {
+            port.openPort();
+            port.getOutputStream().write(data);
+            port.closePort();
+
+        } catch (IOException e) {
             e.printStackTrace();
 
         } finally {
             { // @formatter:off
-            try {  port.close(); } catch (Exception e) {}
-            try {escPos.close(); } catch (Exception e) {}
+            try { port.closePort(); } catch (Exception e) {}
+            try {   escPos.close(); } catch (Exception e) {}
             } // @formatter:on
         }
 
@@ -175,18 +174,18 @@ public class EscPosBuilder {
      =                                                                       =
      *=======================================================================*/
 
-    public static enum Font {
+    public enum Font {
         REGULAR, EMPHASIZED,
         DWDH, DWDH_EMPHASIZED,
         DH, DH_EMPHASIZED,
         DW, DW_EMPHASIZED
     }
 
-    public static enum Align {
+    public enum Align {
         LEFT, CENTER, RIGHT
     }
 
-    public static enum Cut {
+    public enum Cut {
         PART, FULL
     }
 

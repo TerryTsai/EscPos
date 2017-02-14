@@ -1,13 +1,16 @@
 package email.com.gmail.ttsai0509.serial.config;
 
-/******************************************************************
- *                                                                *
+/**
  * Type-safe wrapper for SerialPort Parameters
- *                                                                *
- ******************************************************************/
-
+ */
 public class SerialConfig {
 
+    /**
+     * Convenience method for 9600/8-N-1 configuration. That is -
+     * 8 data bits, no parity bit, 1 stop bit, at 9600 baud.
+     *
+     * @return 9600/8-N-1 configuration
+     */
     public static SerialConfig CONFIG_9600_8N1() {
         return new SerialConfig(
                 Baud.BAUD_9600,
@@ -15,6 +18,13 @@ public class SerialConfig {
         );
     }
 
+    /**
+     * Convenience method for general 8-N-1 configuration. That is -
+     * 8 data bits, no parity bit, 1 stop bit.
+     *
+     * @param baud bits-per-second
+     * @return baud/8-N-1 configuration
+     */
     public static SerialConfig CONFIG_8N1(Baud baud) {
         return new SerialConfig(
                 baud,
@@ -22,11 +32,7 @@ public class SerialConfig {
         );
     }
 
-    /******************************************************************
-     *                                                                *
-     * Configuration Parameters
-     *                                                                *
-     ******************************************************************/
+
 
     private final Baud baud;
     private final DataBits dataBits;
@@ -36,9 +42,8 @@ public class SerialConfig {
 
     public SerialConfig(Baud baud, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
 
-        if (baud == null || dataBits == null ||
-                parity == null || stopBits == null || flowControl == null)
-            throw new NullPointerException(SerialConfig.class.getSimpleName() + " does not accept null parameters");
+        if (baud == null || dataBits == null || parity == null || stopBits == null || flowControl == null)
+            throw new NullPointerException(SerialConfig.class.getSimpleName() + " does not accept null parameters.");
 
         this.baud = baud;
         this.dataBits = dataBits;

@@ -1,7 +1,7 @@
 package email.com.gmail.ttsai0509.print.printer;
 
+import email.com.gmail.ttsai0509.common.IOUtils;
 import email.com.gmail.ttsai0509.print.printer.exception.PrinterException;
-import org.apache.commons.io.IOUtils;
 
 import java.io.OutputStream;
 

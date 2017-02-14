@@ -14,12 +14,10 @@ public enum Baud {
     BAUD_57600(57600),
     BAUD_115200(115200);
 
-    public final int rxtxVal;
-    public final int jserialVal;
+    public final int val;
 
     Baud(int val) {
-        this.rxtxVal = val;
-        this.jserialVal = val;
+        this.val = val;
     }
 
 }

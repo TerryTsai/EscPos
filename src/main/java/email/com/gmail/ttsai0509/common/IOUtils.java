@@ -1,7 +1,18 @@
 package email.com.gmail.ttsai0509.common;
 
-/**
- * Created by Terry on 2/14/2017.
- */
-public class IOUtils {
+import java.io.Closeable;
+import java.io.IOException;
+
+public enum IOUtils {
+
+    ;
+
+    public static void closeQuietly(Closeable c) {
+        try {
+            c.close();
+        } catch (IOException e) {
+            // Shh...
+        }
+    }
+
 }

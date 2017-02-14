@@ -3,18 +3,24 @@ package email.com.gmail.ttsai0509.print.printer;
 import java.util.Arrays;
 import java.util.Date;
 
-/******************************************************************
- *                                                                *
- * A PrintJob is a byte array of data to be printed.
- *                                                                *
- ******************************************************************/
-
+/**
+ * PrintJob is a byte array of data to be printed.
+ *
+ */
 public class PrintJob {
+
+    public PrintJob of(byte[] data) {
+        return new PrintJob(data);
+    }
 
     private static final byte[] NO_DATA = new byte[0];
 
     private final Date date;
     private final byte[] data;
+
+    public PrintJob(byte[] data) {
+        this(data, false);
+    }
 
     public PrintJob(byte[] data, boolean copy) {
         this.date = new Date();

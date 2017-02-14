@@ -6,12 +6,10 @@ import email.com.gmail.ttsai0509.print.printer.Printer;
 
 import java.util.Map;
 
-/******************************************************************
- *                                                                *
+/**
  * PrintDispatcher dispatches PrintJobs to registered Printers.
- *                                                                *
- ******************************************************************/
-
+ *
+ */
 public interface PrinterDispatcher extends Runnable {
 
     Map<String, Printer> getPrinters();
