@@ -5,11 +5,11 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.OutputStream;
 
-public class SimplePrinter implements Printer {
+public class OutputStreamPrinter implements Printer {
 
     private final OutputStream output;
 
-    protected SimplePrinter(OutputStream output) {
+    public OutputStreamPrinter(OutputStream output) {
         if (output == null)
             throw new NullPointerException("OutputStream can not be null.");
 

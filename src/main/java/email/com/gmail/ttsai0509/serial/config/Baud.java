@@ -1,4 +1,4 @@
-package email.com.gmail.ttsai0509.escpos.com.serial;
+package email.com.gmail.ttsai0509.serial.config;
 
 public enum Baud {
 
@@ -14,10 +14,12 @@ public enum Baud {
     BAUD_57600(57600),
     BAUD_115200(115200);
 
-    public final int val;
+    public final int rxtxVal;
+    public final int jserialVal;
 
     Baud(int val) {
-        this.val = val;
+        this.rxtxVal = val;
+        this.jserialVal = val;
     }
 
 }

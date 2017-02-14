@@ -1,8 +1,8 @@
-package email.com.gmail.ttsai0509.escpos.com.serial;
+package email.com.gmail.ttsai0509.serial.config;
 
 /******************************************************************
  *                                                                *
- * Type-safe wrapper for RXTXcomm SerialPort Parameters
+ * Type-safe wrapper for SerialPort Parameters
  *                                                                *
  ******************************************************************/
 
@@ -33,7 +33,6 @@ public class SerialConfig {
     private final StopBits stopBits;
     private final FlowControl flowControl;
     private final Parity parity;
-
 
     public SerialConfig(Baud baud, DataBits dataBits, Parity parity, StopBits stopBits, FlowControl flowControl) {
 

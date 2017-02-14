@@ -14,7 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class PrinterDispatcherAsync implements PrinterDispatcher {
+public class PrinterDispatcherThreadsafe implements PrinterDispatcher {
 
     // Dispatcher Statistics
     private final AtomicBoolean closeRequest, closeRequestPrinters;
@@ -26,7 +26,7 @@ public class PrinterDispatcherAsync implements PrinterDispatcher {
     private final ConcurrentMap<String, Printer> printerMap;
     private final BlockingQueue<PrintRequest> printRequests;
 
-    public PrinterDispatcherAsync() {
+    public PrinterDispatcherThreadsafe() {
 
         closeRequest = new AtomicBoolean(false);
         closeRequestPrinters = new AtomicBoolean(false);
