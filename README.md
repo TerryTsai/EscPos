@@ -56,28 +56,28 @@ dispatcher.requestPrint("Printer3", PrintJob.of(data));
 EscPosBuilder Methods
 =
 
-####**initialize();**
+**initialize();**
 Printer initialization command (0x1B40)
 
-####**reset();**
+**reset();**
 Resets the buffer
 
-####**close();**
+**close();**
 Closes the buffer
 
-####**getBytes();**
+**getBytes();**
 Returns the current buffer as a byte[] 
 
-####**raw(rxtxVal);**
+**raw(rxtxVal);**
 Print a raw int, byte or byte[] to the buffer
 
-####**text(String text);**
+**text(String text);**
 Print text to the buffer (will not print until **feed(int lines)** is called)
 
-####**feed(int lines);**
+**feed(int lines);**
 Prints the preceding text and feeds the number of lines
 
-####**font(Font font);**
+**font(Font font);**
 Toggle one of the following fonts:
  - Font.REGULAR
  - Font.DH
@@ -88,13 +88,13 @@ Toggle one of the following fonts:
  - Font.DW_EMPHASIZED
  - Font.DWDH_EMPHASIZED
 
-####**align(Align align);**
+**align(Align align);**
 Toggle text alignment:
  - Align.LEFT
  - Align.CENTER
  - Align.RIGHT
 
-####**cut(Cut cut);**
+**cut(Cut cut);**
 Cuts the paper:
  - Cut.FULL
  - Cut.PART
