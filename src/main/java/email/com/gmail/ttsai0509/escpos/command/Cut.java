@@ -16,10 +16,7 @@ public enum Cut implements Command {
 
     @Override
     public void write(OutputStream out) throws IOException {
-        out.write(0x1D);
-        out.write(0x56);
-        out.write(code);
-        out.write(0);
+        write(out, 0);
     }
 
     public void write(OutputStream out, int feed) throws IOException {

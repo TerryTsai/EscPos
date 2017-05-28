@@ -9,9 +9,7 @@ public enum FeedLines implements Command {
 
     @Override
     public void write(OutputStream out) throws IOException {
-        out.write(0x1B);
-        out.write(0x64);
-        out.write(1);
+        write(out, 1);
     }
 
     public void write(OutputStream out, int lines) throws IOException {

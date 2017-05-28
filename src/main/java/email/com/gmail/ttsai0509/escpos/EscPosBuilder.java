@@ -99,6 +99,26 @@ public class EscPosBuilder {
         return this;
     }
 
+    public EscPosBuilder kick(DrawerKick kick) {
+        if (kick != null)
+            try {
+                kick.write(out);
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
+            }
+        return this;
+    }
+
+    public EscPosBuilder kick(DrawerKick kick, int t1Pulse, int t2Pulse) {
+        if (kick != null)
+            try {
+                kick.write(out, t1Pulse <= 0 ? 0 : t1Pulse, t2Pulse <= 0 ? 0 : t2Pulse);
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
+            }
+        return this;
+    }
+
     public byte[] getBytes() {
         return out.toByteArray();
     }
