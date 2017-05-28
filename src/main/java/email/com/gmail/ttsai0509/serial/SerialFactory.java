@@ -22,5 +22,4 @@ public enum SerialFactory {
         return serialPort;
     }
 
-
 }

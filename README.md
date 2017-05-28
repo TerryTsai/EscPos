@@ -5,7 +5,6 @@ A basic Java ESC/POS implementation for receipt printers.
  - `EscPosBuilder` provides a fluent style api for preparing ESC/POS data.
  - `SerialFactory` is a type-safe solution for obtaining SerialPort connections
 on any platform.
- - `Printer` and `PrinterDispatcher` facilitates multiple print jobs to multiple printers.
 
 
 EscPosBuilder Usage
@@ -32,30 +31,8 @@ port.getOutputStream().write(data);
 port.closePort();
 ```
 
-Printer Usage
-=
-```java
-Printer printer = new JSerialFactoryPrinter("COM3", SerialConfig.CONFIG_9600_8N1()) {
-PrintJob job = new PrintJob(data);
-
-printer.print(job);
-```
-
-PrinterDispatcher Usage
-=
-```java
-PrinterDispatcher dispatcher = new PrinterDispatcherThreadsafe();
-dispatcher.registerPrinter("Printer1", printer1);
-dispatcher.registerPrinter("Printer2", printer2);
-dispatcher.registerPrinter("Printer3", printer3);
-
-dispatcher.requestPrint("Printer1", PrintJob.of(data));
-dispatcher.requestPrint("Printer2", PrintJob.of(data));
-dispatcher.requestPrint("Printer3", PrintJob.of(data));
-```
 EscPosBuilder Methods
 =
-
 **initialize();**
 Printer initialization command (0x1B40)
 
@@ -68,7 +45,7 @@ Closes the buffer
 **getBytes();**
 Returns the current buffer as a byte[] 
 
-**raw(rxtxVal);**
+**raw(val);**
 Print a raw int, byte or byte[] to the buffer
 
 **text(String text);**
@@ -94,8 +71,7 @@ Toggle text alignment:
  - Align.CENTER
  - Align.RIGHT
 
-**cut(Cut cut);**
-Cuts the paper:
+**cut(Cut cut, int lines);**
+Feeds the number of lines and cuts the paper:
  - Cut.FULL
  - Cut.PART
-
