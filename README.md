@@ -75,3 +75,8 @@ Toggle text alignment:
 Feeds the number of lines and cuts the paper:
  - Cut.FULL
  - Cut.PART
+
+**kick(DrawerKick kick, int t1Pulse, int t2Pulse);**
+Send Drawer Kick pulse to the following pin:
+ - DrawerKick.PIN2
+ - DrawerKick.PIN5
