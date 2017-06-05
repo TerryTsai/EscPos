@@ -89,16 +89,6 @@ public class EscPosBuilder {
         return this;
     }
 
-    public EscPosBuilder cut(Cut cut, int lines) {
-        if (cut != null)
-            try {
-                cut.write(out, lines <= 0 ? 0 : lines);
-            } catch (IOException e) {
-                throw new UncheckedIOException(e);
-            }
-        return this;
-    }
-
     public EscPosBuilder kick(DrawerKick kick) {
         if (kick != null)
             try {
