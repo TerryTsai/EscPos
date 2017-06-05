@@ -5,8 +5,8 @@ import java.io.OutputStream;
 
 public enum Cut implements Command {
 
-    FULL(65),
-    PART(66);
+    FULL(0x00),
+    PART(0x01);
 
     private final int code;
 
@@ -16,14 +16,9 @@ public enum Cut implements Command {
 
     @Override
     public void write(OutputStream out) throws IOException {
-        write(out, 0);
-    }
-
-    public void write(OutputStream out, int feed) throws IOException {
         out.write(0x1D);
         out.write(0x56);
         out.write(code);
-        out.write(feed);
     }
 
 }
