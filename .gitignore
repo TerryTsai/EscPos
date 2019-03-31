@@ -1,3 +1,4 @@
-.gradle/
+EscPos.iml
 .idea/
 build/
+target/
