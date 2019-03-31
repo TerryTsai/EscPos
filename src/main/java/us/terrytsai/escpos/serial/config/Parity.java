@@ -1,4 +1,4 @@
-package email.com.gmail.ttsai0509.serial.config;
+package us.terrytsai.escpos.serial.config;
 
 import com.fazecast.jSerialComm.SerialPort;
 
