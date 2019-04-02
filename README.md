@@ -1,82 +1,122 @@
+[![CircleCI](https://circleci.com/gh/TerryTsai/EscPos.svg?style=shield)](https://circleci.com/gh/TerryTsai/EscPos)
+[![Version](https://img.shields.io/github/tag/TerryTsai/EscPos.svg?label=version&color=success)](https://github.com/TerryTsai/EscPos/tags)
+[![JitPack](https://jitpack.io/v/TerryTsai/EscPos.svg)](https://jitpack.io/#TerryTsai/EscPos)
+[![License](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
+
+
 EscPos Library for Java
 =
 A basic Java ESC/POS implementation for receipt printers.
 
- - `EscPosBuilder` provides a fluent style api for preparing ESC/POS data.
- - `SerialFactory` is a type-safe solution for obtaining SerialPort connections
-on any platform.
-
-
-EscPosBuilder Usage
-=
-```java
-EscPosBuilder escPos = new EscPosBuilder();
-
-byte[] data = escPos.initialize()
-        .font(Font.EMPHASIZED)
-        .align(Align.CENTER)
-        .text("HELLO WORLD")
-        .feed(5)
-        .cut(Cut.PART)
-        .getBytes();
-```
+ - `EscPosWriter` provides a fluent style api for preparing ESC/POS data. Supported commands depend on printer model.
+ - `SerialFactory` is a type-safe solution for obtaining SerialPort connections on any platform.
 
 SerialFactory Usage
 =
 ```java
-SerialPort port = SerialFactory.jSerialPort("COM3", SerialConfig.CONFIG_9600_8N1());
+SerialPort port = SerialFactory.com(3, SerialConfig.CONFIG_9600_8N1());
 
 port.openPort();
-port.getOutputStream().write(data);
+OutputStream out = port.getOutputStream();
+// Use OutputStream
 port.closePort();
 ```
 
-EscPosBuilder Methods
+EscPosWriter Usage
 =
-**initialize();**
-Printer initialization command (0x1B40)
+```java
+EscPosWriter escPos = new EscPosWriter(out)
+        .initialize()
+        .setCharacterCodeTable(CharacterCodeTable.PC437)
+        .setJustification(Justification.CENTER)
+        .setCharacterSize(Width.X3, Height.X3)
+        .setEmphasize(true)
+        .text("HELLO WORLD")
+        .printAndFeedLines(5)
+        .cut(CutA.PARTIAL)
+        .sendRealTimeRequestPulse(Pin.TWO, PulseTime.FOUR);
+```
 
-**reset();**
-Resets the buffer
+EscPosWriter Methods
+=
 
-**close();**
-Closes the buffer
+Write Commands
+* `text(String text)`
+* `bytes(byte[] bytes)`
 
-**getBytes();**
-Returns the current buffer as a byte[] 
+Print Commands
+* `printAndFeedLine()`
+* `printAndReturnToStandardMode()`
+* `printAndCarriageReturn()`
+* `printInPageMode()`
+* `printAndFeedPaper(int n)`
+* `printAndReverseFeed(int n)`
+* `printAndFeedLines(int n)`
+* `printAndReverseFeedLines(int n)`
 
-**raw(val);**
-Print a raw int, byte or byte[] to the buffer
+Line Spacing Commands
+* `setDefaultLineSpacing()`
+* `setLineSpacing(int n)`
 
-**text(String text);**
-Print text to the buffer (will not print until **feed(int lines)** is called)
+Character Commands
+* `cancelPrintInPageMode()`
+* `setPrintMode(boolean altFont, boolean emphasized, boolean underlined, boolean doubleHeight, boolean doubleWidth)`
+* `setRightSideCharacterSpacing(int n)`
+* `setUnderline(Underline underline)`
+* `setEmphasize(boolean enabled)`
+* `setDoubleStrike(boolean enabled)`
+* `setFont(Font font)`
+* `setCharacterSet(CharacterSet characterSet)`
+* `setRotation(Rotation rotation)`
+* `setColor(Color color)`
+* `setCharacterCodeTable(CharacterCodeTable characterCodeTable)`
+* `setUpsideDownPrint(boolean enabled)`
+* `setCharacterSize(Width width, Height height)`
+* `setWhiteBlackReverse(boolean enabled)`
+* `setSmoothing(boolean enabled)`
 
-**feed(int lines);**
-Prints the preceding text and feeds the number of lines
+Print Position Commands
+* `horizontalTab()`
+* `setPrintDirection(Direction direction)`
+* `setJustification(Justification justification)`
+* `setLeftMargin(int nL, int nH)`
+* `setPrintPositionStart(DataAction action)`
+* `setPrintAreaWidth(int nL, int nH)`
+* `setAbsolutePosition(int nL, int nH)`
+* `setRelativePosition(int nL, int nH)`
+* `setAbsoluteVerticalPosition(int nL, int nH)`
+* `setRelativeVerticalPosition(int nL, int nH)`
 
-**font(Font font);**
-Toggle one of the following fonts:
- - Font.REGULAR
- - Font.DH
- - Font.DW
- - Font.DWDH
- - Font.EMPHASIZED
- - Font.DH_EMPHASIZED
- - Font.DW_EMPHASIZED
- - Font.DWDH_EMPHASIZED
+Mechanism Control Commands
+* `returnHome()`
+* `setUnidirectionalPrint(boolean enabled)`
+* `cut(CutA cut)`
+* `cutWithFeed(CutB cut, int n)`
+* `cutPosition(CutC cut, int n)`
+* `cutWithFeedAndReturnStart(CutD cut, int n)`
 
-**align(Align align);**
-Toggle text alignment:
- - Align.LEFT
- - Align.CENTER
- - Align.RIGHT
+Panel Button Commands
+* `setPanelButtons(boolean enabled)`
 
-**cut(Cut cut, int lines);**
-Feeds the number of lines and cuts the paper:
- - Cut.FULL
- - Cut.PART
+Kanji Commands
+* `setKanjiPrintMode(boolean underlined, boolean doubleWidth, boolean doubleHeight)`
+* `setKanjiCharacterMode()`
+* `setKanjiUnderline(Underline underline)`
+* `cancelKanjiCharacterMode()`
+* `setKanjiCodeSystem(Kanji kanji)`
+* `setKanjiCharacterSpacing(int n1, int n2)`
+* `setKanjiQuadrupleSize(boolean enabled)`
 
-**kick(DrawerKick kick, int t1Pulse, int t2Pulse);**
-Send Drawer Kick pulse to the following pin:
- - DrawerKick.PIN2
- - DrawerKick.PIN5
+Miscellaneous Commands
+* `initialize()`
+* `sendRealTimeRequest(RealTimeRequest realTimeRequest)`
+* `sendRealTimeRequestPulse(Pin pin, PulseTime pulseTime)`
+* `sendRealTimeRequestPowerOff()`
+* `sendRealTimeRequestBuzzer(int a, int n, int r, int t1, int t2)`
+* `sendRealTimeRequestStatus(Status status)`
+* `sendRealTimeRequestClearBuffers()`
+* `setPeripheralDevice(int n)`
+* `setPageMode()`
+* `setStandardMode()`
+* `generatePulse(Pin pin, int t1, int t2)`
+* `setMotionUnits(int x, int y)`
