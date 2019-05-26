@@ -1,4 +1,7 @@
 escpos.iml
+.classpath
+.project
 .idea/
+.settings/
 build/
 target/

@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>us.terrytsai</groupId>
+    <groupId>com.github.terrytsai</groupId>
     <artifactId>escpos</artifactId>
     <version>2.1-SNAPSHOT</version>
 
@@ -49,13 +49,6 @@
             <version>2.5.0</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>downloads</id>
-            <url>file:///home/terry/downloads/</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>
