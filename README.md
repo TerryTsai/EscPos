@@ -1,8 +1,16 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.terrytsai/escpos/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.terrytsai/escpos)
 [![CircleCI](https://circleci.com/gh/TerryTsai/EscPos.svg?style=shield)](https://circleci.com/gh/TerryTsai/EscPos)
-[![Version](https://img.shields.io/github/tag/TerryTsai/EscPos.svg?label=version&color=success)](https://github.com/TerryTsai/EscPos/tags)
-[![JitPack](https://jitpack.io/v/TerryTsai/EscPos.svg)](https://jitpack.io/#TerryTsai/EscPos)
 [![License](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
 
+Usage
+=
+```xml
+<dependency>
+  <groupId>com.github.terrytsai</groupId>
+  <artifactId>escpos</artifactId>
+  <version>2.2</version>
+</dependency>
+```
 
 EscPos Library for Java
 =
