@@ -115,7 +115,7 @@ public class EscPosWriter {
      * <p>
      * [Notes]
      * - With a serial interface, the command performs as if auto line feed is disabled.
-     * - Enabling or disabling the auto line feed can be selected by the DIP switch or the memory switch. Memory switch can be changed with GS ( E <Function 3>;.
+     * - Enabling or disabling the auto line feed can be selected by the DIP switch or the memory switch. Memory switch can be changed with GS ( E &lt;Function 3&gt;
      * - After printing, the print position is moved to left side of the printable area. Also, the printer is in the status "beginning of the line".
      * - When this command is processed in Page mode, only the print position moves, and the printer does not perform actual printing.
      *
@@ -284,12 +284,12 @@ public class EscPosWriter {
      * - When both double-height and double-width modes are turned on, quadruple size characters are printed.
      * - In Standard mode, the character is enlarged in the paper feed direction when double-height mode is selected, and it is enlarged perpendicular to the paper feed direction when double-width mode is selected. However, when character orientation changes in 90° clockwise rotation mode, the relationship between double-height and double-width is reversed.
      * - in Page mode, double-height and double-width are on the character orientation.
-     * - The underline thickness is that specified by ESC -, regardless of the character size. The underline is the same color as the printed character. The printed character's color is specified by GS ( N <Function 48>.
+     * - The underline thickness is that specified by ESC -, regardless of the character size. The underline is the same color as the printed character. The printed character's color is specified by GS ( N &lt;Function 48&gt;.
      * - The following are not underlined.
      * - 90° clockwise-rotated characters
      * - white/black reverse characters
      * - space set by HT, ESC $, and ESC \
-     * - On printers that have the Automatic font replacement function, the replaced font with GS ( E <Function 5> (a = 111, 112, 113) is selected by this command.
+     * - On printers that have the Automatic font replacement function, the replaced font with GS ( E &lt;Function 5&gt; (a = 111, 112, 113) is selected by this command.
      *
      * @param altFont      true for Font 1, false for Font 2
      * @param emphasized   enable emphasized font
@@ -350,7 +350,7 @@ public class EscPosWriter {
      * <p>
      * [Notes]
      * - The underline mode is effective for alphanumeric, Kana, and user-defined characters. On some models, it is effective also for Korean characters.
-     * - The color of underline is the same as that of the printing character. The printing character's color is selected by GS ( N <Function 48>.
+     * - The color of underline is the same as that of the printing character. The printing character's color is selected by GS ( N &lt;Function 48&gt;.
      * - Changing the character size does not affect the current underline thickness.
      * - When underline mode is turned off, the following data cannot be underlined, but the thickness is maintained.
      * - The printer does not underline 90° clockwise rotated characters, white/black reverse characters, and the space set by HT, ESC $, and ESC \.
@@ -399,7 +399,7 @@ public class EscPosWriter {
      * - The character font set by this command is effective for alphanumeric, Kana, and user-defined characters.
      * - Configurations of Font A and Font B depend on the printer model.
      * - Settings of this command are effective until ESC ! is executed, ESC @ is executed, the printer is reset, or the power is turned off.
-     * - On the printer that has the Automatic font replacement function, the replaced font with GS ( E <Function 5> (a = 111 or 112) is selected by this command.
+     * - On the printer that has the Automatic font replacement function, the replaced font with GS ( E &lt;Function 5&gt; (a = 111 or 112) is selected by this command.
      *
      * @param font character font
      * @return {@link EscPosWriter}
@@ -476,7 +476,7 @@ public class EscPosWriter {
      * [Notes]
      * - When Standard mode is selected, this command is enabled only when processed at the beginning of the line.
      * - The upside-down print mode is effective for all data in Standard mode except the following:
-     * - The graphics from GS ( L / GS 8 L <Function 112>, GS ( L / GS 8 L <Function 113>.
+     * - The graphics from GS ( L / GS 8 L &lt;Function 112&gt;, GS ( L / GS 8 L &lt;Function 113&gt;.
      * - Raster bit image from GS v 0.
      * - Variable vertical size bit image from GS Q 0.
      * - The upside-down print mode has no effect in Page mode.
@@ -960,7 +960,7 @@ public class EscPosWriter {
      * <p>
      * [Notes]
      * - This command can be used only for the Japanese, Simplified Chinese, and Traditional Chinese models.
-     * - Settings of this command are effective until FS & is executed, ESC @ is executed, the printer is reset, or the power is turned off.
+     * - Settings of this command are effective until FS &amp; is executed, ESC @ is executed, the printer is reset, or the power is turned off.
      * <p>
      * [Notes for Japanese models]
      * - Settings of this command affect character code processing only when JIS code system is selected by FS C.
@@ -986,7 +986,7 @@ public class EscPosWriter {
      * <p>
      * [Notes]
      * - This command is effective only with Japanese model.
-     * - When JIS code system is selected, Kanji mode should be specified by FS & to print Kanji characters.
+     * - When JIS code system is selected, Kanji mode should be specified by FS &amp; to print Kanji characters.
      * - When SHIFT JIS code system is selected, if the printer processes a character code that corresponds to the first byte of the Kanji code, the printer processes a consecutive byte as the second byte of the Kanji code.
      * - Therefore, when this code system is selected, ASCII code that corresponds to the first byte of the Kanji code cannot be printed.
      * - Kanji code processes the first byte and the second byte in order.
@@ -1119,7 +1119,7 @@ public class EscPosWriter {
      * [Notes]
      * - This is a Real-time command. Refer to Notes of Real-time commands for usage note.
      * - This command can be used after enabling real time command processing with GS ( D.
-     * - The function of not sounding the buzzer affects autonomous buzzer sound (errors, paper-end) and buzzer sound with ESC ( A <Function 97>, buzzer sound during cutting, buzzer sound by generating the specified pulse.
+     * - The function of not sounding the buzzer affects autonomous buzzer sound (errors, paper-end) and buzzer sound with ESC ( A &lt;Function 97&gt;, buzzer sound during cutting, buzzer sound by generating the specified pulse.
      *
      * @param a  a
      * @param n  n
@@ -1260,7 +1260,7 @@ public class EscPosWriter {
      * The pulse for ON time is (t1 × 2 msec) and for OFF time is (t2 × 2 msec).
      * <p>
      * [Notes]
-     * - If t2 < t1, the OFF time is equal to the ON time.
+     * - If t2 &lt; t1, the OFF time is equal to the ON time.
      * - It is not possible to output the pulses to the drawer kick-out connector pin 2 and 5 at the same time.
      *
      * @param pin connector pin
